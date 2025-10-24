@@ -1,0 +1,85 @@
+.skills-section {
+  width: 100%;
+  padding: 60px 24px;
+  background-color: #ffffff; /* Nền trắng cho sạch sẽ */
+  box-sizing: border-box;
+}
+
+.skills-container {
+  max-width: 1200px; /* Giới hạn chiều rộng */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.skills-title {
+  font-size: 2.5rem; /* 40px */
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.skills-grid {
+  display: grid;
+  /* Tạo 4 cột trên màn hình lớn */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px; /* Khoảng cách giữa các thẻ */
+}
+
+.skill-card {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: left;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.skill-card:hover {
+  transform: translateY(-5px); /* Hiệu ứng nhấc lên khi hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.skill-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.skill-card-title {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 700;
+  color: #0052d4; /* Màu xanh dương */
+  margin-bottom: 10px;
+}
+
+.skill-card-description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.skill-card-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.skill-card-link:hover {
+  text-decoration: underline;
+}
+
+/* Code để làm cho nó đẹp trên điện thoại (Responsive) */
+@media screen and (max-width: 992px) {
+  .skills-grid {
+    /* 2 cột trên tablet */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .skills-grid {
+    /* 1 cột trên điện thoại */
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,53 @@
+.test-page-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.test-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.test-title {
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+  text-transform: capitalize; /* Viết hoa chữ cái đầu */
+}
+
+.test-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  min-height: 300px; /* Thêm chiều cao tối thiểu */
+}
+
+.listening-section audio {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.submit-button {
+  display: block;
+  margin: 40px auto 0;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #218838;
+}

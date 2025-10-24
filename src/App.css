@@ -1,0 +1,11 @@
+/* Reset CSS cơ bản */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+.app-container {
+  /* KHÔNG CÓ PADDING */
+  padding: 0;
+}

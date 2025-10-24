@@ -1,0 +1,67 @@
+.footer-pro {
+  background-color: #222; /* Dark background */
+  color: #ccc; /* Light grey text */
+  padding: 40px 24px 20px; /* Top/Bottom - Left/Right */
+  margin-top: 50px; /* Add space above the footer */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  /* Create 3 columns */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #444; /* Separator line */
+}
+
+.footer-section h4 {
+  color: #fff; /* White headings */
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.footer-section p {
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #00aaff; /* Light blue on hover */
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .footer-container {
+    /* Stack columns on smaller screens */
+    grid-template-columns: 1fr; 
+    text-align: center;
+  }
+  .footer-section ul {
+    padding-left: 0; /* Remove padding for centered lists */
+  }
+}
