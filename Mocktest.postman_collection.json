@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "2f9a1dd8-28c8-4000-91ae-6c44e355ea06",
+		"name": "Mocktest API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49597642",
+		"_collection_link": "https://dohoanghai2525-9618434.postman.co/workspace/Ho%C3%A0ng-H%E1%BA%A3i-%C4%90%E1%BB%97's-Workspace~51b62bdc-09df-4c62-8125-c9ee63bea5f5/collection/49597642-2f9a1dd8-28c8-4000-91ae-6c44e355ea06?action=share&source=collection_link&creator=49597642"
+	},
+	"item": [
+		{
+			"name": "Get All Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test cho GET /api/users (3 test)\r",
+							"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));\r",
+							"pm.test(\"Response time < 200ms\", () => pm.expect(pm.response.responseTime).to.be.below(200));\r",
+							"pm.test(\"Body is an array\", () => pm.expect(pm.response.json()).to.be.an('array'));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by ID (Success)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test cho GET /api/users/1 (2 test)\r",
+							"pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));\r",
+							"\r",
+							"pm.test(\"User name is 'Hoang Hai'\", () => pm.expect(pm.response.json().name).to.eql(\"Hoang Hai\"));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by ID (Not Found)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test cho GET /api/users/99 (Test lỗi 404) (2 test)\r",
+							"pm.test(\"Status code is 404 (Not Found)\", () => pm.response.to.have.status(404));\r",
+							"pm.test(\"Error message is correct\", () => pm.expect(pm.response.json().error).to.eql(\"User not found\"));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/users/99",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"99"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User (Bad Request)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test cho POST /api/users (Test lỗi 400 - không gửi name) (1 test)\r",
+							"pm.test(\"Status code is 400 (Bad Request)\", () => pm.response.to.have.status(400));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
