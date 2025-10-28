@@ -1,14 +1,15 @@
 .question-card {
-  width: 90%;
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 92%;
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid #e7edf5;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
 
 .question-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
 }

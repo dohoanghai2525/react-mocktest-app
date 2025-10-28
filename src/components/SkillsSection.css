@@ -1,66 +1,74 @@
 .skills-section {
   width: 100%;
-  padding: 60px 24px;
-  background-color: #ffffff; /* Nền trắng cho sạch sẽ */
+  padding: 72px 24px;
+  background-color: #ffffff;
   box-sizing: border-box;
 }
 
 .skills-container {
-  max-width: 1200px; /* Giới hạn chiều rộng */
+  max-width: var(--container);
   margin: 0 auto;
   text-align: center;
 }
 
 .skills-title {
-  font-size: 2.5rem; /* 40px */
-  font-weight: 700;
-  color: #333;
+  font-size: clamp(1.75rem, 1rem + 2vw, 2.5rem);
+  font-weight: 800;
+  color: var(--text);
   margin-bottom: 40px;
 }
 
 .skills-grid {
   display: grid;
-  /* Tạo 4 cột trên màn hình lớn */
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px; /* Khoảng cách giữa các thẻ */
+  gap: 28px;
 }
 
 .skill-card {
-  background-color: #f9f9f9;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 30px;
+  background-color: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 28px;
   text-align: left;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .skill-card:hover {
-  transform: translateY(-5px); /* Hiệu ứng nhấc lên khi hover */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--primary-100);
 }
 
 .skill-icon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: var(--primary-700);
 }
 
 .skill-card-title {
-  font-size: 1.5rem; /* 24px */
-  font-weight: 700;
-  color: #0052d4; /* Màu xanh dương */
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-700);
   margin-bottom: 10px;
 }
 
 .skill-card-description {
   font-size: 1rem;
-  color: #555;
+  color: var(--muted);
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
 .skill-card-link {
-  color: #007bff;
+  color: var(--primary-600);
   text-decoration: none;
   font-weight: 700;
 }
@@ -72,14 +80,12 @@
 /* Code để làm cho nó đẹp trên điện thoại (Responsive) */
 @media screen and (max-width: 992px) {
   .skills-grid {
-    /* 2 cột trên tablet */
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 576px) {
   .skills-grid {
-    /* 1 cột trên điện thoại */
     grid-template-columns: 1fr;
   }
 }

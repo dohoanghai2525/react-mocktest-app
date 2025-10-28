@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// Chúng ta dùng lại CSS của SkillsSection cho đồng bộ
-import '../components/SkillsSection.css'; 
+import '../components/SkillsSection.css';
+import './Dashboard.css';
 
 const skills = [
   { title: 'Listening', path: '/test/listening', icon: '🎧' },
@@ -12,19 +12,24 @@ const skills = [
 
 function Dashboard() {
   return (
-    <section className="skills-section" style={{ backgroundColor: '#fff', minHeight: '80vh' }}>
+    <section className="dashboard-section">
       <div className="skills-container">
         <h2 className="skills-title">Chọn Kỹ Năng Của Bạn</h2>
+        <p className="dashboard-subtitle">Bắt đầu bài thi theo kỹ năng bạn muốn luyện tập.</p>
         <div className="skills-grid">
           {skills.map((skill) => (
-            // Dùng <Link> để chuyển trang
             <Link to={skill.path} key={skill.title} className="skill-card-link-wrapper">
-              <div className="skill-card">
+              <div className="skill-card dashboard-card">
                 <div className="skill-icon">{skill.icon}</div>
                 <h3 className="skill-card-title">{skill.title}</h3>
                 <p className="skill-card-description">
                   Bắt đầu bài thi {skill.title.toLowerCase()}.
                 </p>
+                <div className="skill-card-actions">
+                  <span className="skill-card-hint">Khoảng 15-60 phút</span>
+                  <span className="spacer" />
+                  <button className="btn btn-primary skill-cta" type="button">Vào thi</button>
+                </div>
               </div>
             </Link>
           ))}
@@ -33,14 +38,5 @@ function Dashboard() {
     </section>
   );
 }
-
-// CSS bổ sung để <Link> không có gạch chân
-const style = document.createElement('style');
-style.innerHTML = `
-  .skill-card-link-wrapper {
-    text-decoration: none;
-  }
-`;
-document.head.appendChild(style);
 
 export default Dashboard;

@@ -1,11 +1,5 @@
-/* Reset CSS cơ bản */
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  background-color: #f4f4f4;
-}
-
+/* App-level overrides kept minimal to avoid overriding global tokens */
 .app-container {
-  /* KHÔNG CÓ PADDING */
   padding: 0;
+  background: transparent;
 }

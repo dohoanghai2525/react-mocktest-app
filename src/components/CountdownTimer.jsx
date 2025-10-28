@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './CountdownTimer.css'; // File CSS cho đồng hồ
 
 // Component này nhận vào một prop là `initialMinutes` (số phút ban đầu)
-function CountdownTimer({ initialMinutes = 45 }) {
+function CountdownTimer({ initialMinutes = 45, onChangeSecondsLeft }) {
   // Chuyển phút thành giây
   const [secondsLeft, setSecondsLeft] = useState(initialMinutes * 60);
 
@@ -25,6 +25,12 @@ function CountdownTimer({ initialMinutes = 45 }) {
   // Tính toán phút và giây còn lại
   const minutes = Math.floor(secondsLeft / 60);
   const seconds = secondsLeft % 60;
+
+  useEffect(() => {
+    if (typeof onChangeSecondsLeft === 'function') {
+      onChangeSecondsLeft(secondsLeft);
+    }
+  }, [secondsLeft, onChangeSecondsLeft]);
 
   return (
     <div className="countdown-timer">

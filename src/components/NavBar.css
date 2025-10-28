@@ -7,8 +7,8 @@ body {
 }
 
 .navbar-pro {
-  background-color: #ffffff;
-  height: 80px;
+  background-color: var(--surface);
+  height: 72px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,23 +16,26 @@ body {
   position: sticky;
   top: 0;
   z-index: 999;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ như ảnh mẫu */
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid #eef2f7;
 }
 
 .navbar-container {
   display: flex;
-  justify-content: space-between; /* Căn đều các phần tử */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1300px;
+  max-width: var(--container);
   padding: 0 24px;
 }
 
 /* Logo */
 .navbar-logo {
-  color: #007bff; /* Màu xanh dương giống trong ảnh (cho chữ) */
-  font-size: 1.5rem;
-  font-weight: 700;
+  color: var(--primary-600);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
   text-decoration: none;
   cursor: pointer;
 }
@@ -51,19 +54,27 @@ body {
 }
 
 .nav-link {
-  color: #333; /* Màu chữ tối */
+  color: var(--text);
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 0 1rem;
+  padding: 0 14px;
   height: 100%;
   cursor: pointer;
-  font-weight: 500; /* Chữ đậm vừa phải */
-  transition: color 0.3s ease;
+  font-weight: 600;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  border-radius: 8px;
 }
 
 .nav-link:hover {
-  color: #007bff; /* Đổi màu khi hover */
+  color: var(--primary-700);
+  background-color: #eef2ff;
+}
+
+.nav-link.active {
+  color: var(--primary-700);
+  background-color: var(--primary-100);
+  font-weight: 800;
 }
 
 /* Nút Bấm */
@@ -73,25 +84,36 @@ body {
 }
 
 .nav-button {
-  padding: 10px 22px;
+  padding: 10px 18px;
   border: none;
-  border-radius: 5px;
-  background-color: #f9a825; /* Màu vàng cam giống ảnh */
-  color: #111; /* Màu chữ tối */
-  font-size: 1rem;
-  font-weight: 700;
+  border-radius: 8px;
+  background-color: var(--accent);
+  color: #111827;
+  font-size: 0.95rem;
+  font-weight: 800;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .nav-button:hover {
   background-color: #f59e0b;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
 }
 .logout-button {
-  background-color: #dc3545; /* Màu đỏ */
-  color: white;
+  background-color: var(--danger);
+  color: #fff;
 }
 
 .logout-button:hover {
-  background-color: #c82333;
+  background-color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 16px;
+  }
+  .nav-link {
+    padding: 0 10px;
+  }
 }

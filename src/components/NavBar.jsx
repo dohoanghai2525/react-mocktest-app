@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Thêm useNavigate
+import { Link, NavLink, useNavigate } from 'react-router-dom'; // Thêm useNavigate
 import './NavBar.css';
 
 // Nhận props từ App.jsx
@@ -22,7 +22,12 @@ function NavBar({ isLoggedIn, onLogout }) {
           {/* Thêm link Dashboard nếu đã đăng nhập */}
           {isLoggedIn && (
              <li className="nav-item">
-              <Link to="/dashboard" className="nav-link">Làm Bài</Link>
+              <NavLink
+                to="/dashboard"
+                className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+              >
+                Làm Bài
+              </NavLink>
             </li>
           )}
         </ul>
@@ -35,10 +40,15 @@ function NavBar({ isLoggedIn, onLogout }) {
               Đăng xuất
             </button>
           ) : (
-            // Nếu chưa đăng nhập -> Nút Đăng nhập
-            <Link to="/login">
-              <button className="nav-button">Đăng nhập / Đăng ký</button>
-            </Link>
+            // Nếu chưa đăng nhập -> 2 nút
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <Link to="/login#login">
+                <button className="btn btn-secondary">Đăng nhập</button>
+              </Link>
+              <Link to="/login#register">
+                <button className="btn btn-primary">Đăng ký</button>
+              </Link>
+            </div>
           )}
         </div>
       </div>
