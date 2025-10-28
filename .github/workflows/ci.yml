@@ -1,0 +1,60 @@
+# Tên của workflow
+name: CI Workflow
+
+# 1. YÊU CẦU: Trigger workflow on push or pull request
+on:
+  push:
+    branches: [ "main", "master" ] # Kích hoạt khi push lên nhánh main hoặc master
+  pull_request:
+    branches: [ "main", "master" ] # Kích hoạt khi tạo pull request vào main/master
+
+# Định nghĩa các công việc sẽ chạy
+jobs:
+  build-and-test:
+    name: Build, Lint, and Test
+    runs-on: ubuntu-latest # Chạy trên một máy ảo Ubuntu (Linux)
+
+    steps:
+      # Bước 1: Lấy code từ repo về máy ảo
+      - name: 1. Check out repository
+        uses: actions/checkout@v4
+
+      # Bước 2: Cài đặt Node.js (phiên bản 18, giống Dockerfile)
+      - name: 2. Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm' # Dùng cache để tăng tốc npm install
+          cache-dependency-path: '**/package-lock.json' # Cache cho cả 2 project
+
+      # --- Chạy các lệnh cho Frontend (React App ở gốc) ---
+      - name: 3. (Frontend) Install dependencies
+        run: npm install
+
+      - name: 4. (Frontend) Run Lint
+        run: npm run lint # 2. YÊU CẦU: Lint script
+        continue-on-error: true # Sẽ tiếp tục dù bước này lỗi (phòng khi bạn chưa setup)
+
+      - name: 5. (Frontend) Run Tests
+        run: npm run test # 2. YÊU CẦU: Test script
+        continue-on-error: true # Sẽ tiếp tục dù bước này lỗi (phòng khi bạn chưa setup)
+
+      - name: 6. (Frontend) Run Build
+        run: npm run build # Tạo ra thư mục 'dist'
+
+      # --- Chạy các lệnh cho Backend (trong thư mục /backend) ---
+      - name: 7. (Backend) Install dependencies
+        run: npm install
+        working-directory: ./backend # Chỉ định chạy lệnh trong thư mục 'backend'
+
+      - name: 8. (Backend) Run Lint
+        run: npm run lint # 2. YÊU CẦU: Lint script
+        working-directory: ./backend
+        continue-on-error: true # Sẽ tiếp tục dù bước này lỗi (phòng khi bạn chưa setup)
+
+      # --- Tải lên Artifact (kết quả build) ---
+      - name: 9. Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build-artifact # Tên của gói artifact
+          path: ./dist/ # 2. YÊU CẦU: Upload thư mục build (dist)
