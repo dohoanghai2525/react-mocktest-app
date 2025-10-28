@@ -1,0 +1,56 @@
+version: '3.9' # Sử dụng phiên bản 3.9
+
+services:
+  # Dịch vụ 1: Backend (App Node.js/Express)
+  backend:
+    build:
+      context: ./backend # Đường dẫn tới thư mục backend
+      dockerfile: Dockerfile # Tên Dockerfile trong thư mục đó
+    ports:
+      - "3001:3001" # Mở cổng 3001 của container ra máy thật
+    environment:
+      # Đây là thông tin để backend kết nối vào database
+      # 'db' chính là tên của service database ở dưới
+      - DB_HOST=db 
+      - DB_USER=myuser
+      - DB_PASSWORD=mypassword
+      - DB_NAME=mydb
+    depends_on:
+      db:
+        condition: service_healthy # Chỉ chạy backend khi db đã "khỏe"
+    healthcheck:
+      # Đây là phần kiểm tra /health endpoint theo đề bài
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s # Cho backend 5s để khởi động trước khi kiểm tra
+
+  # Dịch vụ 2: Frontend (App React)
+  frontend:
+    build:
+      context: . # Đường dẫn tới thư mục gốc (Mocktest)
+      dockerfile: Dockerfile # Tên Dockerfile ở gốc
+    ports:
+      - "80:80" # Mở cổng 80 của Nginx ra máy thật
+    depends_on:
+      - backend # Frontend phụ thuộc vào backend
+
+  # Dịch vụ 3: Database (Postgres)
+  db:
+    image: postgres:14-alpine # Lấy image Postgres từ Docker Hub
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Lưu dữ liệu database
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d mydb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  # Định nghĩa volume để lưu trữ dữ liệu database
+  postgres_data:
